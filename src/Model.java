@@ -51,8 +51,16 @@ public class Model {
      * @return velocidad actualizada
      */
     public static Integer subirVelocidad(String matricula, Integer v){
-        getCoche(matricula).velocidad = v + getCoche(matricula).velocidad;
+        /*getCoche(matricula).velocidad = v + getCoche(matricula).velocidad;
         return getCoche(matricula).velocidad;
+        */
+        Coche coche = getCoche(matricula);
+        int nuevaVelocidad = coche.velocidad + v;
+        coche.velocidad = nuevaVelocidad;
+
+        ObsExceso.verificarVelocidad(coche, nuevaVelocidad);
+
+        return nuevaVelocidad;
     }
 
     /**
@@ -62,8 +70,17 @@ public class Model {
      * @return velocidad actualizada
      */
     public static Integer bajarVelocidad(String matricula, Integer v){
+        /*
         getCoche(matricula).velocidad = getCoche(matricula).velocidad - v;
         return getCoche(matricula).velocidad;
+        */
+        Coche coche = getCoche(matricula);
+        int nuevaVelocidad = coche.velocidad - v;
+        coche.velocidad = nuevaVelocidad;
+
+        ObsExceso.verificarVelocidad(coche, nuevaVelocidad);
+
+        return nuevaVelocidad;
     }
 
     /**
