@@ -1,4 +1,5 @@
 public class Controller {
+
     /**
      * Llama al metodo view() de la clase View
      * @param args

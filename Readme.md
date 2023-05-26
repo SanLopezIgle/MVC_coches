@@ -12,6 +12,17 @@ Para notificar a los observadores hacemos dos pasos
 
 De esta manera se *dispara* en todos los observadores el método `update()`
 
+
+## Clase ObsExceso
+
+No siempre es necesario implementar la interfaz o usar el método addObserver(), depende mucho del contexto
+y la situación en el que lo estemos utilizando, en este caso lo que hacemos es configurarlo
+de forma directa al objeto observado.
+He tenido que utilizarlo de esta forma ya que no he podido solucionar algunos problemas que me da el IDE, al implementar la interfaz
+'Observer' y la clase 'Observable' me aparece tachado por estar obsoleto, por lo tanto, no puedo utilizar el método addObserver().
+Para hacer de esa forma lo que tendría que hacer sería, en la clase ObsExceso implementar Observer y en la clase Model, extender 'Observable',
+luego en mi clase Controller, instaciar un objeto de la clase Model ya que es observable y añadirle con el método
+addObserver() un nuevo observador, que su función es ver que, en este caso un coche, supera los 120km/hr.
 ---
 ## Diagrama de clases:
 
@@ -93,9 +104,3 @@ sequenceDiagram
 3. Controller
     * Instanciar el observer, definido en el punto anterior
     * Añadir este observer al observable con `addObserver()`
-   
-## Clase ObsExceso
-
-No siempre es necesario implementar la interfaz o usar el método addObserver(), depende mucho del contexto
-y la situación en el que lo estemos utilizando, en este caso lo que hacemos es configurarlo
-de forma directa al objeto observado.

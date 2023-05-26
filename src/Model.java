@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.*;
 
-public class Model {
+public class Model extends Observable {
     static ArrayList<Coche> parking = new ArrayList<>();
 
     /**
@@ -37,9 +38,12 @@ public class Model {
      * @param v nueva velocidad
      * @return velocidad modificada
      */
-    public static Integer cambiarVelocidad(String matricula, Integer v) {
+    public Integer cambiarVelocidad(String matricula, Integer v) {
         // busca el coche
         getCoche(matricula).velocidad = v;
+        setChanged();
+        //notificamos a los observadores
+        notifyObservers(getCoche(matricula));
         // retorna la nueva velocidad
         return getCoche(matricula).velocidad;
     }

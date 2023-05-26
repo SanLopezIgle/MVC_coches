@@ -1,6 +1,7 @@
 import java.util.Observable;
 import java.util.Observer;
 
+@SuppressWarnings("ALL")
 public class ObserverVelocidad implements Observer {
     /**
      * Se llama cada vez que exista un cambio
