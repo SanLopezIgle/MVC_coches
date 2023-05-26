@@ -36,11 +36,15 @@ classDiagram
           +cambiarVelocidad(String, Integer)
           +getVelocidad(String)
       }
+      class ObsExceso{
+         +verificarVelocidad(Coche, int)
+      }
       class ObserverVelocidad {
           +update()
           }
           Controller "1" *-- "1" ObserverVelocidad: association
           Controller "1" *-- "1" Model : association
+          Controller "1" *-- "1" ObsExceso: association
     Model "1" *-- "1..n" Coche : association
     Observable <|-- Model
       
@@ -58,17 +62,21 @@ sequenceDiagram
     participant View
     participant Controller
     participant ObserverVelocidad
+    participant ObsExceso
     participant Model
     
     Controller->>Model: cambia la velociad, porfa
     activate Model
     Model->>ObserverVelocidad: Notificacion de cambio de velocidad
+    Model->>ObsExceso: Notificacion exceso de velocidad
     deactivate Model
     activate ObserverVelocidad
     ObserverVelocidad->>+View: Muestra la velocidad, porfa
     deactivate ObserverVelocidad
+    activate ObsExceso
+    ObsExceso->>+View: Muestra mensaje de alerta
     activate View
-    View->>-View: Mostrando velocidad
+    View->>-View: Mostrando velocidad y mensaje de alerta
     deactivate View
 ```
 
@@ -85,3 +93,9 @@ sequenceDiagram
 3. Controller
     * Instanciar el observer, definido en el punto anterior
     * Añadir este observer al observable con `addObserver()`
+   
+## Clase ObsExceso
+
+No siempre es necesario implementar la interfaz o usar el método addObserver(), depende mucho del contexto
+y la situación en el que lo estemos utilizando, en este caso lo que hacemos es configurarlo
+de forma directa al objeto observado.
