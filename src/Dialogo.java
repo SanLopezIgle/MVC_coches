@@ -18,4 +18,11 @@ public class Dialogo extends JDialog {
         dialog.mensaje.setText(mensaje);
         dialog.setVisible(true);
     }
+
+    public static void mostrarDialogo(String mensaje){
+        Dialogo dialog = new Dialogo();
+        dialog.pack();
+        dialog.mensaje.setText(mensaje);
+        dialog.setVisible(true);
+    }
 }

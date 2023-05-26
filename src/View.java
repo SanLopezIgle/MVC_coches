@@ -16,4 +16,9 @@ public class View {
         Dialogo.main(mensaje);
         return true;
     }
+
+    public static void mostrarDialogo(Coche coche) {
+        String mensaje = "Alerta: ¡Velocidad excedida! Velocidad actual: " +  coche.velocidad + " km/hr";
+        Dialogo.main(mensaje);
+    }
 }
